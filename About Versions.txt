@@ -1,0 +1,44 @@
+The algorithm has two phases: (1) Insertion and (2) adjustment of prototypes. The second phase
+may be carried out with any search algorithm. In this research each 'main' version uses a different
+search algorithms. All of them with their respective modifications will be listed below.
+
+
+DCIAGSA (Dynamic Centroid Insertion and Adjustment with Gravity Search Algorithm)
+ - The first algorithm implemented
+
+	M1 : data were normalized
+	M2 : data were normalized and divided with DOB-SCV
+
+DCIASGSA (Dynamic Centroid Insertion and Adjustment with Simple Gravity Search Algorithm)
+ - GSA was replaced with SGSA. Data is always normalized and train and test subsets are created
+ with DOB-SCV
+
+	M1 : Data are undersampled with Tomek-links and then oversampled with SMOTE like algorithm
+	M2 : Data are oversampled with SMOTE like algorithm and then undersampled with Tomek-links
+	M3 : Feature Selection with tSNE Matlab function
+	M4 : Feature Selection with fscnca Matlab function
+	M5 : FS with CSO and AUCarea as fitness. SGSA remains unaltered.
+
+DCIAPSO (Dynamic Centroid Insertion and Adjustment with Particle Swarm Optimization)
+ - GSA was replaced with PSO. Data is always normalized and train and test subsets are created
+ with DOB-SCV
+
+	M1 : AUCarea replaces MAUC as fitness function
+	M2 : Feature Selection with CSO
+	M3 : New fitness for M2 FS with CSO
+		fitness : sum of centroids distances
+	M4 : FS with WOA
+	M5 : FS with SYMON
+	M6 : M5 with different fitness
+		fitness: (mean_outer - std_outer) - (mean_inner + std_inner)
+			in which 
+				mean/std_outter are vectors containing mean and std of distances from each inclass instances to all outclass instances
+				mean/std_inner are vectors containing mean and std of inner class distances
+	M7 : M2 with M6 fitness
+	M8 : M7 with slightly different fitness
+	M9 : M8 with slightly different fitness
+	M10: M2 with AUCarea as FS fitness function
+	M11: M4 with AUCarea instead of MAUC for fitness calculation
+
+DCIACSO (Dynamic Centroid Insertion and Adjustment with Competitive Swarm Optimization)
+ - PSO was replaced with CSO in DCIAPSO.M10
