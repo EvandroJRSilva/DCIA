@@ -1,6 +1,6 @@
-The algorithm has two phases: (1) Insertion and (2) adjustment of prototypes. The second phase
+The algorithm has three phases: (1) Initialization; (2) Adjustment of Prototypes and (3) Insertion. The second phase
 may be carried out with any search algorithm. In this research each 'main' version uses a different
-search algorithms. All of them with their respective modifications will be listed below.
+search algorithm. All of them with their respective modifications will be listed below.
 
 
 DCIAGSA (Dynamic Centroid Insertion and Adjustment with Gravity Search Algorithm)
