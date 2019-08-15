@@ -50,7 +50,7 @@ for dataSet = 1:length(db)
     % For each fold
     for k=1:numFolds
         % Printing current iteration
-        str1 = 'ITERA«√O'; str2 = ' '; str3 = num2str(k);
+        str1 = 'ITERA√á√ÉO'; str2 = ' '; str3 = num2str(k);
         disp([str1 str2 str3]);
         
         % Test Set
@@ -66,15 +66,15 @@ for dataSet = 1:length(db)
         end
         trainSet = dataF(trainIdx, :); trainTargets = dataTNum(trainIdx);
         
+        % Normalizing features
+        [trainSet, testSet] = normalization(trainSet, testSet);
+        
         % OVERSAMPLING-----------------------------------------------------
         [trainSet, trainTargets] = oversampling(trainSet, trainTargets, numCls, numFolds, numDim);
         %------------------------------------------------------------------
         % UNDERSAMPLING----------------------------------------------------
         [trainSet, trainTargets] = undersampling(trainSet, trainTargets, numCls, numFolds);
         %------------------------------------------------------------------
-        
-        % Normalizing features
-        [trainSet, testSet] = normalization(trainSet, testSet);
         
         prototypes = DCIASGSA(trainSet, trainTargets, numDim, numCls);
         
@@ -115,8 +115,6 @@ for dataSet = 1:length(db)
         results(k).FM = fm; results(k).Accuracy = acc;
         results(k).Dim = numDim; results(k).NumProt = size(prototypes, 1);        
     end
-    
-    delete(gcp('nocreate'))
     
     % Saving Result object
     fullPath = strcat(mainPath, algPath, clfPath, version, resultsFolder);
